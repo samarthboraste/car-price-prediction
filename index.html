@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Car Prediction</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="navbar-inner">
+
+            <div class="logo">
+                Car Prediction
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="main">
+
+        <section class="prediction-card">
+
+            <div class="card-heading">
+
+                <h1>Used Car Price</h1>
+
+                <p>
+                    Enter the details of the car to get an estimated price.
+                </p>
+
+            </div>
+
+
+            <form id="predictionForm">
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="brand">
+                            Brand
+                        </label>
+
+                        <input
+                            type="text"
+                            id="brand"
+                            placeholder="e.g. Kia"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="model">
+                            Model
+                        </label>
+
+                        <input
+                            type="text"
+                            id="model"
+                            placeholder="e.g. Seltos"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="year">
+                            Manufacturing Year
+                        </label>
+
+                        <input
+                            type="number"
+                            id="year"
+                            placeholder="e.g. 2021"
+                            min="1990"
+                            max="2026"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="age">
+                            Car Age
+                        </label>
+
+                        <input
+                            type="number"
+                            id="age"
+                            placeholder="e.g. 5"
+                            min="0"
+                            max="50"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="kmDriven">
+                        Kilometers Driven
+                    </label>
+
+                    <input
+                        type="number"
+                        id="kmDriven"
+                        placeholder="e.g. 45000"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="transmission">
+                            Transmission
+                        </label>
+
+                        <select
+                            id="transmission"
+                            required
+                        >
+
+                            <option value="">
+                                Select transmission
+                            </option>
+
+                            <option value="Manual">
+                                Manual
+                            </option>
+
+                            <option value="Automatic">
+                                Automatic
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="owner">
+                            Owner
+                        </label>
+
+                        <select
+                            id="owner"
+                            required
+                        >
+
+                            <option value="">
+                                Select owner
+                            </option>
+
+                            <option value="First Owner">
+                                First Owner
+                            </option>
+
+                            <option value="Second Owner">
+                                Second Owner
+                            </option>
+
+                            <option value="Third Owner">
+                                Third Owner
+                            </option>
+
+                            <option value="Fourth Owner">
+                                Fourth Owner
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="fuelType">
+                        Fuel Type
+                    </label>
+
+                    <select
+                        id="fuelType"
+                        required
+                    >
+
+                        <option value="">
+                            Select fuel type
+                        </option>
+
+                        <option value="Petrol">
+                            Petrol
+                        </option>
+
+                        <option value="Diesel">
+                            Diesel
+                        </option>
+
+                        <option value="CNG">
+                            CNG
+                        </option>
+
+                        <option value="Electric">
+                            Electric
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    id="predictButton"
+                >
+
+                    <span id="buttonText">
+                        Predict Price
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+            <div
+                id="loading"
+                class="loading"
+                style="display: none;"
+            >
+
+                <div class="spinner"></div>
+
+                <span>
+                    Calculating price...
+                </span>
+
+            </div>
+
+
+            <div
+                id="result"
+                class="result"
+                style="display: none;"
+            >
+
+                <p class="result-title">
+                    Estimated Price
+                </p>
+
+                <div id="predictedPrice">
+                    ₹0
+                </div>
+
+                <p id="lakhsPrice"></p>
+
+            </div>
+
+
+            <div
+                id="error"
+                class="error"
+                style="display: none;"
+            ></div>
+
+
+        </section>
+
+    </main>
+
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.22.0/dist/ort.min.js"></script>
+    <script src="/script.js"></script>
+
+</body>
+
+</html>
