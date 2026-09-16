@@ -5,15 +5,11 @@ import pandas as pd
 import joblib
 
 
-# ==============================
 # Load trained ML model
-# ==============================
 model = joblib.load("used_car_price_model.pkl")
 
 
-# ==============================
 # Create FastAPI application
-# ==============================
 app = FastAPI(
     title="Used Car Price Prediction API",
     description="API for predicting used car prices",
@@ -21,9 +17,7 @@ app = FastAPI(
 )
 
 
-# ==============================
-# CORS Configuration
-# ==============================
+# CORS - useful for local frontend testing
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -33,9 +27,7 @@ app.add_middleware(
 )
 
 
-# ==============================
-# Input Data Model
-# ==============================
+# Input data structure
 class CarData(BaseModel):
     brand: str
     model: str
@@ -47,9 +39,7 @@ class CarData(BaseModel):
     fuelType: str
 
 
-# ==============================
-# Home Route
-# ==============================
+# Home endpoint
 @app.get("/")
 def home():
     return {
@@ -57,9 +47,7 @@ def home():
     }
 
 
-# ==============================
-# Health Check
-# ==============================
+# Health check
 @app.get("/health")
 def health():
     return {
@@ -68,9 +56,7 @@ def health():
     }
 
 
-# ==============================
-# Prediction Route
-# ==============================
+# Price prediction
 @app.post("/predict")
 def predict_price(car: CarData):
 
@@ -85,6 +71,7 @@ def predict_price(car: CarData):
         "FuelType": [car.fuelType]
     })
 
+    # Make prediction
     prediction = model.predict(input_data)[0]
 
     prediction = float(prediction)
