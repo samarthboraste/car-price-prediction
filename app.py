@@ -4,13 +4,12 @@ import pandas as pd
 import joblib
 import os
 
-# Get the path of the model inside the backend folder
 MODEL_PATH = os.path.join(
     os.path.dirname(__file__),
-    "../backend/used_car_price_model.pkl"
+    "backend",
+    "used_car_price_model.pkl"
 )
 
-# Load trained ML model
 model = joblib.load(MODEL_PATH)
 
 app = FastAPI(
@@ -61,7 +60,6 @@ def predict_price(car: CarData):
     })
 
     prediction = model.predict(input_data)[0]
-
     prediction = float(prediction)
 
     return {
